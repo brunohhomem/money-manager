@@ -14,7 +14,7 @@ export default function DashboardLayout({
           Money Manager
         </h1>
       </div>
-      <div className="container items-center gap-4 w-md m-auto mt-2 rounded-xl shadow-xl bg-slate-200 h-48">
+      <div className="container items-center gap-4 w-md m-auto mt-2 rounded-xl shadow-xl bg-slate-200">
         {children}
       </div>
     </>
