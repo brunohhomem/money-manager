@@ -2,7 +2,7 @@ package com.bhh.moneyback.domain.activity.type;
 
 public enum Type {
         REVENUE("revenue"),
-        EXPANSE("expense");
+        EXPENSE("expense");
 
         private String value;
         Type(String aValue){
