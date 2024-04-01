@@ -7,7 +7,9 @@ public record InsertActivityOutputDto (
         Instant date,
         String description,
         float value,
-        String type
+        String type,
+        Instant createdAt,
+        Instant updatedAt
 
 ){
 }

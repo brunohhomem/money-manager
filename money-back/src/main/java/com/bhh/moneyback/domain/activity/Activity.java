@@ -12,25 +12,26 @@ public class Activity {
     private Instant date;
     private String description;
     private float value;
-    private Type type;
+    private Type.ActivityType type;
     private Instant createdAt;
     private Instant updatedAt;
 
-    private Activity(final String aId, final Instant aDate, final String aDescription, final float aValue,
-                     final Type aType, final Instant aCreatedAt, final Instant aUpdatedAt){
-        this.id = aId;
+    private Activity(final String anId, final Instant aDate, final String aDescription,
+                     final float aValue, final Type.ActivityType aType, final Instant aCreatedAt,
+                     final Instant anUpdatedAt) {
+        this.id = anId;
         this.date = aDate;
         this.description = aDescription;
         this.value = aValue;
         this.type = aType;
         this.createdAt = aCreatedAt;
-        this.updatedAt = aUpdatedAt;
+        this.updatedAt = anUpdatedAt;
 
         this.validate();
     }
 
     public static Activity newActivity(final Instant aDate, final String aDescription, final float aValue,
-                                       final Type aType){
+                                       final Type.ActivityType aType){
         return new Activity(
                 UUID.randomUUID().toString().toLowerCase(),
                 aDate,
@@ -42,7 +43,7 @@ public class Activity {
     }
 
     public static Activity with(final String aId, final Instant aDate, final String aDescription, final float aValue,
-                                final Type aType, final Instant aCreatedAt, final Instant aUpdatedAt){
+                                final Type.ActivityType aType, final Instant aCreatedAt, final Instant aUpdatedAt){
         return new Activity(aId, aDate, aDescription, aValue, aType, aCreatedAt, aUpdatedAt);
     }
 
@@ -55,7 +56,7 @@ public class Activity {
             throw new DomainException("Activity's description should not be blank");
         } else if (this.description.length() > 3){
             throw new DomainException("Activity's description should have at least 3 characters");
-        } else if (this.type != Type.EXPENSE && this.type != Type.REVENUE){
+        } else if (this.type != Type.ActivityType.EXPENSE && this.type != Type.ActivityType.REVENUE){
             throw new DomainException("Activity's type should be expense or revenue");
         } else if (this.value < 0.01){
             throw new DomainException("Activity's value should be greater than zero");
@@ -80,7 +81,7 @@ public class Activity {
         return value;
     }
 
-    public Type getType() {
+    public Type.ActivityType getType() {
         return type;
     }
 

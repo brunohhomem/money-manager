@@ -1,14 +1,21 @@
 package com.bhh.moneyback.domain.activity.type;
 
-public enum Type {
+public class Type {
+
+    public enum ActivityType {
         REVENUE("revenue"),
         EXPENSE("expense");
 
         private String value;
-        Type(String aValue){
-            this.value = aValue;}
 
-        public String getValue(){
-            return this.getValue();}
+        ActivityType(final String aValue) {
+            this.value = aValue;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+    }
+
 }
 
