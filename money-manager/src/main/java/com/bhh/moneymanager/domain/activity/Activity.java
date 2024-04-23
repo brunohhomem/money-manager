@@ -25,6 +25,8 @@ public class Activity {
         this.type = aType;
         this.createdAt = aCreatedAt;
         this.updatedAt = aUpdatedAt;
+
+        this.validate();
     }
 
     public static Activity newActivity(final Instant aDate, final String aDescription, float aValue,
@@ -42,6 +44,28 @@ public class Activity {
     public static Activity with(final String anId, final Instant aDate, final String aDescription,
                                 float aValue, final Type.ActivityType aType, final Instant aCreatedAt, final Instant aUpdatedAt){
         return new Activity(anId, aDate, aDescription, aValue, aType, aCreatedAt, aUpdatedAt);
+    }
+
+    public void validate(){
+        if (this.id.isBlank() && this.id.length() != 36){
+            throw new RuntimeException("Activity's ID should be valid");
+        }
+
+        if (this.description.isBlank() && this.description.length() > 3){
+            throw new RuntimeException("Description should be valid");
+        }
+
+        if (this.type != Type.ActivityType.EXPANSE && this.type != Type.ActivityType.REVENUE){
+            throw new RuntimeException("Activity's Type should be either EXPANSE or REVENUE");
+        }
+
+        if (this.value < 0.01){
+            throw new RuntimeException("Activity's value should be greater than zero");
+        }
+
+        if ((this.createdAt.isAfter(this.updatedAt))){
+            throw new RuntimeException("Activity's creation date should be before updated");
+        }
     }
 
     public String getId() {
