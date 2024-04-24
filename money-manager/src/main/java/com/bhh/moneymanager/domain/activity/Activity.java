@@ -1,6 +1,7 @@
 package com.bhh.moneymanager.domain.activity;
 
 import com.bhh.moneymanager.domain.activity.type.Type;
+import com.bhh.moneymanager.domain.exceptions.DomainException;
 import com.bhh.moneymanager.utils.InstantUtils;
 
 import java.time.Instant;
@@ -48,23 +49,23 @@ public class Activity {
 
     public void validate(){
         if (this.id.isBlank() && this.id.length() != 36){
-            throw new RuntimeException("Activity's ID should be valid");
+            throw new DomainException("Activity's ID should be valid");
         }
 
         if (this.description.isBlank() && this.description.length() > 3){
-            throw new RuntimeException("Description should be valid");
+            throw new DomainException("Description should be valid");
         }
 
         if (this.type != Type.ActivityType.EXPANSE && this.type != Type.ActivityType.REVENUE){
-            throw new RuntimeException("Activity's Type should be either EXPANSE or REVENUE");
+            throw new DomainException("Activity's Type should be either EXPANSE or REVENUE");
         }
 
         if (this.value < 0.01){
-            throw new RuntimeException("Activity's value should be greater than zero");
+            throw new DomainException("Activity's value should be greater than zero");
         }
 
         if ((this.createdAt.isAfter(this.updatedAt))){
-            throw new RuntimeException("Activity's creation date should be before updated");
+            throw new DomainException("Activity's creation date should be before updated");
         }
     }
 
