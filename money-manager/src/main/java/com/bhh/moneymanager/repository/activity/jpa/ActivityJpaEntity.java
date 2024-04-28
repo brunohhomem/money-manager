@@ -56,7 +56,13 @@ public class ActivityJpaEntity {
                 .get()
                 .ordinal();
 
-        return new ActivityJpaEntity(anActivity.getId(),anActivity.getDescription(), anActivity.getDate(), anActivity.getValue(), type, anActivity.getCreatedAt(), anActivity.getUpdatedAt());
+        return new ActivityJpaEntity(anActivity.getId(),
+                anActivity.getDescription(),
+                anActivity.getDate(),
+                anActivity.getValue(),
+                aType,
+                anActivity.getCreatedAt(),
+                anActivity.getUpdatedAt());
     }
 
     public Activity toModel(){
