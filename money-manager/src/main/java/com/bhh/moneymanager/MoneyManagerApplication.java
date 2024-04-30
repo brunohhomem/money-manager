@@ -19,6 +19,5 @@ public class MoneyManagerApplication {
 		SpringApplication.run(WebserverConfiguration.class, args);
 
 		LOG.info("Ending of starting money.manager... ");
-//		SpringApplication.run(MoneyManagerApplication.class, args);
 	}
 }
